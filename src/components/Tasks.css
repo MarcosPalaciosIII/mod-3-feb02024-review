@@ -1,0 +1,19 @@
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 7vw;
+    align-items: start;
+    flex-flow: row wrap;
+}
+
+.task-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 12vw;
+    height: 10vw;
+    margin: 0 0 1vw;
+    padding: 1vw 2vw;
+}
