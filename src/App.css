@@ -1,5 +1,18 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 3vw;
+  padding: 0 5vw;
+  background-color: lightblue;
+  position: fixed;
+  top: 0;
+}
+
 .App {
   text-align: center;
+  padding-top: 3vw;
 }
 
 .App-logo {
