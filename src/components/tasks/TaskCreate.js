@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-export default function TaskCreate({ addNewTask }) {
-	console.log({ addNewTask });
+export default function TaskCreate({ addNewTask, children }) {
+	console.log({ addNewTask, children });
 
 	const [formData, setFormData] = useState({ task: "", completed: false });
 

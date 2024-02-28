@@ -27,7 +27,11 @@ export default function TasksHome() {
 			<br />
 			<br />
 			<div>
-				{!!displayForm && <TaskCreate addNewTask={addNewTaskToList} />}
+				{!!displayForm && (
+					<TaskCreate addNewTask={addNewTaskToList}>
+						Hello Everybody!!!!
+					</TaskCreate>
+				)}
 			</div>
 			<br />
 			<br />
