@@ -1,5 +1,6 @@
 import React from "react";
 import "./Tasks.css";
+import { Link } from "react-router-dom";
 
 export default function TaskDisplay({ taskList }) {
 	console.log({ taskList });
@@ -8,7 +9,7 @@ export default function TaskDisplay({ taskList }) {
 		return taskList.map((oneTask, i) => {
 			return (
 				<div className="task-box">
-					<h3>{oneTask.task}</h3>
+					<Link to={`/tasks/${oneTask.taskId}`}>{oneTask.task}</Link>
 					<h4>Completed: {!!oneTask.completed ? "Yes" : "No"}</h4>
 				</div>
 			);

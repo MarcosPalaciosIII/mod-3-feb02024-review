@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import TaskContext from "./context/TaskContext.context";
+import { useNavigate } from "react-router-dom";
 
-export default function TaskCreate({ addNewTask, children }) {
-	console.log({ addNewTask, children });
+export default function TaskCreate({ children }) {
+	console.log({ children });
+	const navigateTo = useNavigate();
 
 	const [formData, setFormData] = useState({ task: "", completed: false });
+
+	const { addNewTaskToList, message, taskList } = useContext(TaskContext);
+
+	console.log({ messageInHomePage: message });
 
 	const handleChange = (event) => {
 		// console.log({ [event.target.name]: event.target.value });
@@ -22,14 +29,18 @@ export default function TaskCreate({ addNewTask, children }) {
 	};
 
 	const handleSubmit = (event) => {
+		const taskId = taskList.length;
 		event.preventDefault();
 
 		console.log({ formData });
-		addNewTask(formData);
+		// addNewTask(formData);
+		addNewTaskToList({ ...formData, taskId });
 
 		setTimeout(() => {
 			setFormData({ task: "", completed: false });
 		}, 10);
+
+		navigateTo(`/tasks/${taskId}`);
 	};
 
 	return (
