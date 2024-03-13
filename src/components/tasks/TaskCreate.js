@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TaskContext from "./context/TaskContext.context";
 import { useNavigate } from "react-router-dom";
 
@@ -28,19 +28,23 @@ export default function TaskCreate({ children }) {
 		}));
 	};
 
-	const handleSubmit = (event) => {
-		const taskId = taskList.length;
+	const handleSubmit = async (event) => {
+		// const taskId = taskList.length;
 		event.preventDefault();
 
 		console.log({ formData });
 		// addNewTask(formData);
-		addNewTaskToList({ ...formData, taskId });
+		// addNewTaskToList({ ...formData, taskId });
+		const createdTask = await addNewTaskToList(formData);
 
 		setTimeout(() => {
 			setFormData({ task: "", completed: false });
 		}, 10);
 
-		navigateTo(`/tasks/${taskId}`);
+		console.log({ createdTask });
+
+		// navigateTo(`/tasks/${taskId}`);
+		navigateTo(`/tasks/${createdTask.data._id}`);
 	};
 
 	return (

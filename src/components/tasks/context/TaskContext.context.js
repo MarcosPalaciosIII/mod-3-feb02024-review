@@ -7,24 +7,47 @@ const service = new TaskService();
 export const TaskProvider = ({ children }) => {
 	const [taskList, setTaskList] = useState([]);
 
-	const addNewTaskToList = (task) => {
-		setTaskList((prevState) => [...prevState, task]);
-		// console.log({ task });
-	};
+	// const addNewTaskToList = (task) => {
+	// 	setTaskList((prevState) => [...prevState, task]);
+	// 	// console.log({ task });
+	// };
 
 	const getAllTasks = async () => {
 		const tasksFromApi = await service.getTasks();
 
-		setTaskList((prevState) =>
-			!!prevState.length ? prevState : tasksFromApi
-		);
+		// console.log({ tasksFromApi: tasksFromApi.data });
+
+		// no longer needed as we are not using dummy data any more
+		// setTaskList((prevState) =>
+		// 	!!prevState.length ? prevState : tasksFromApi.data
+		// );
+		setTaskList(tasksFromApi.data);
+	};
+
+	const createTask = async (task) => {
+		const createdTask = await service.addTask(task);
+
+		getAllTasks();
+
+		return createdTask;
+	};
+
+	const updateTask = async (task) => {
+		const updatedTask = await service.updateTasks(task);
+
+		// console.log({ updatedTask });
+
+		getAllTasks();
+
+		return updatedTask;
 	};
 
 	const data = {
 		message: "hello World",
 		taskList,
-		addNewTaskToList,
+		addNewTaskToList: createTask,
 		getAllTasks,
+		updateTask,
 	};
 
 	return (

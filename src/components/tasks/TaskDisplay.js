@@ -8,8 +8,8 @@ export default function TaskDisplay({ taskList }) {
 	const displayTasks = () => {
 		return taskList.map((oneTask, i) => {
 			return (
-				<div className="task-box">
-					<Link to={`/tasks/${oneTask.taskId}`}>{oneTask.task}</Link>
+				<div className="task-box" key={i}>
+					<Link to={`/tasks/${oneTask._id}`}>{oneTask.task}</Link>
 					<h4>Completed: {!!oneTask.completed ? "Yes" : "No"}</h4>
 				</div>
 			);

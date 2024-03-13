@@ -1,22 +1,43 @@
-import React, { useContext } from "react";
-import TaskContext from "./context/TaskContext.context";
+import React, { useState, useEffect } from "react";
+// import TaskContext from "./context/TaskContext.context";
 import { useParams, Link } from "react-router-dom";
+import TaskService from "./services/TaskService";
 
 export default function TaskDetail() {
-	const { taskList } = useContext(TaskContext);
-
+	const [taskToDisplay, setTaskToDisplay] = useState(null);
+	// const { taskList } = useContext(TaskContext);
+	const service = new TaskService();
 	const { taskId } = useParams();
 
-	const taskToDisplay = taskList[taskId];
+	useEffect(() => {
+		setDisplayTask();
+	}, []);
 
-	console.log({ taskList, taskId, taskToDisplay });
+	// const taskToDisplay = taskList[taskId];
+	const setDisplayTask = async () => {
+		console.log({ taskId });
 
-	return (
-		<div className="task-box">
-			<Link to={`/tasks/${taskToDisplay.taskId}`}>
-				{taskToDisplay.task}
-			</Link>
-			<h4>Completed: {!!taskToDisplay.completed ? "Yes" : "No"}</h4>
-		</div>
-	);
+		const taskFromApi = await service.getTaskDetails(taskId);
+
+		console.log({ taskDetails: taskFromApi.data });
+
+		setTaskToDisplay(taskFromApi.data);
+	};
+
+	const displayTask = () => {
+		return !!taskToDisplay ? (
+			<div className="task-box">
+				<Link to={`/tasks/${taskToDisplay.taskId}`}>
+					{taskToDisplay.task}
+				</Link>
+				<h4>Completed: {!!taskToDisplay.completed ? "Yes" : "No"}</h4>
+			</div>
+		) : (
+			<div>Loading...</div>
+		);
+	};
+
+	console.log({ taskId, taskToDisplay });
+
+	return displayTask();
 }
