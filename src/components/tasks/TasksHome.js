@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import TaskHomeDisplayContent from "./TaskHomeDisplayContent";
 
 export default function TasksHome() {
+	console.log({ UserInTasksHome: JSON.parse(localStorage.getItem("user")) });
 	return (
 		<TaskProvider>
 			<Routes>

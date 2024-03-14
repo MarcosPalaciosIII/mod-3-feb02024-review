@@ -4,6 +4,7 @@ import TasksHome from "./components/tasks/TasksHome";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./components/core/Homepage";
 import Navbar from "./components/core/Navbar";
+import Registration from "./components/auth/Registration";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 			<Routes>
 				<Route exact path="/" element={<Homepage />} />
 				<Route exact path="/tasks/*" element={<TasksHome />} />
+				<Route exact path="/auth/*" element={<Registration />} />
 			</Routes>
 
 			<footer>

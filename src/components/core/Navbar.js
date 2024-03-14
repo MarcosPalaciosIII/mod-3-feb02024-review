@@ -7,6 +7,8 @@ export default function Navbar() {
 			{/* <a href='/'>Home</a> */}
 			<Link to="/">Home</Link>
 			<Link to="/tasks">Tasks</Link>
+			<Link to="/auth/login">Login</Link>
+			<Link to="/auth/signup">Signup</Link>
 		</nav>
 	);
 }
